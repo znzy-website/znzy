@@ -3,6 +3,7 @@
 import {reactive} from "vue";
 import {post} from "@/net/index.js";
 import {message} from "ant-design-vue";
+import router from "@/router/index.js";
 const [messageApi, contextHolder] = message.useMessage();
 
 const options =reactive({
@@ -11,11 +12,15 @@ const options =reactive({
 })
 
 const Login=()=>{
-  post("/api/login", {
+  post("/api/auth/login", {
     username:options.name,
     password: options.password,
-    },(message)=>{
-    messageApi.success(message);
+    },(message,data)=>{
+    messageApi.success(message+"一秒后跳转到主界面！");
+    localStorage.setItem("authToken",data);
+    setTimeout(()=>{
+      router.push('/');
+    },1000);
   })
 }
 

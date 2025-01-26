@@ -1,5 +1,6 @@
 package com.example.backend.service.impl;
 
+import com.example.backend.entity.User;
 import com.example.backend.mapper.UserMapper;
 import com.example.backend.service.UserService;
 import jakarta.annotation.Resource;
@@ -11,7 +12,12 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public Integer login(String username, String password) {
+    public User login(String username, String password) {
         return userMapper.login(username, password);
+    }
+
+    @Override
+    public User getUserById(Integer id) {
+        return userMapper.getUserById(id);
     }
 }

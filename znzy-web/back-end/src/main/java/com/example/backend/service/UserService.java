@@ -1,7 +1,10 @@
 package com.example.backend.service;
 
+import com.example.backend.entity.User;
 import org.springframework.stereotype.Service;
 
 public interface UserService {
-    Integer login(String username, String password);
+    User login(String username, String password);
+
+    User getUserById(Integer id);
 }
